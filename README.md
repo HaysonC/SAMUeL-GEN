@@ -4,11 +4,14 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.11](https://img.shields.io/badge/Python-3.11-blue.svg)](https://www.python.org/downloads/release/python-3110/)
 [![PyTorch 2.7](https://img.shields.io/badge/PyTorch-2.7-orange.svg)](https://pytorch.org/get-started/locally/)
+
+
+
 This repository contains the official implementation of **SAMUeL-GEN**, a lightweight latent diffusion model for vocal-conditioned musical accompaniment generation. Our approach achieves **220× parameter reduction** and **52× faster inference** compared to state-of-the-art systems while maintaining competitive performance.
 
 ## Paper
 
-**Efficient Vocal-Conditioned Music Generation via Soft Alignment Attention and Latent Diffusion**  
+**Efficient Vocal-Conditioned Music Generation via Soft Alignment Attention and Latent Diffusion**
 *Hei Shing Cheung, Boya Zhang*
 
 [arXiv:2507.19991](https://arxiv.org/abs/2507.19991) [cs.SD]
@@ -30,24 +33,24 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 Our model introduces several key innovations:
 
 1. **Soft Alignment Attention Mechanism**: The core innovation is a soft alignment attention mechanism that dynamically balances local and global attention patterns through time-dependent weighting. This mechanism is based on the hierarchical diffusion process.
-
 2. **Dual-mode Attention**:
-    -  **Local attention** operates within sliding windows of size 16 to capture fine-grained temporal dependencies. The local attention for position *i* is computed as:
-        $$
-        \text{LocalAttn}(i) = \text{softmax}\left(\frac{Q_i K_{j \in W(i)}^T}{\sqrt{d}}\right)V
-        $$
-        where $W(i)$ is the local window around position $i$, and $Q, K, V$ are derived from convolutional projections.
-    -  **Global attention** computes relationships across the entire sequence using rotary position embeddings (RoPE) for improved positional encoding. The global attention formula is:
-        $$
-        \text{GlobalAttn} = \text{softmax}\left(\frac{\text{ROPE}(Q)\text{ROPE}(K)^T}{\sqrt{d}}\right)V
-        $$
 
-3.  **FiLM Conditioning**: The architecture uses Feature-wise Linear Modulation (FiLM) layers to provide fine-grained temporal control and integrate timestep embeddings.
+   - **Local attention** operates within sliding windows of size 16 to capture fine-grained temporal dependencies. The local attention for position *i* is computed as:
+     $$
+     \text{LocalAttn}(i) = \text{softmax}\left(\frac{Q_i K_{j \in W(i)}^T}{\sqrt{d}}\right)V
+     $$
 
-4.  **V-objective Training**: The model is trained to predict velocity, $v_t$, which is defined as:
-    $$
-    v_t = \alpha_t \epsilon - \sigma_t x_0
-    $$
+     where $W(i)$ is the local window around position $i$, and $Q, K, V$ are derived from convolutional projections.
+   - **Global attention** computes relationships across the entire sequence using rotary position embeddings (RoPE) for improved positional encoding. The global attention formula is:
+     $$
+     \text{GlobalAttn} = \text{softmax}\left(\frac{\text{ROPE}(Q)\text{ROPE}(K)^T}{\sqrt{d}}\right)V
+     $$
+3. **FiLM Conditioning**: The architecture uses Feature-wise Linear Modulation (FiLM) layers to provide fine-grained temporal control and integrate timestep embeddings.
+4. **V-objective Training**: The model is trained to predict velocity, $v_t$, which is defined as:
+
+   $$
+   v_t = \alpha_t \epsilon - \sigma_t x_0
+   $$
 
 ## Repository Structure
 
@@ -82,12 +85,14 @@ SAMUeL-GEN/
 ### Setup
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/HaysonC/SAMUeL-GEN.git
 cd SAMUeL-GEN
 ```
 
 2. Install dependencies:
+
 ```bash
 # Install from requirements file, or cd to source directory and run without src/ prefix
 python -m venv venv
@@ -100,25 +105,28 @@ pip install numpy matplotlib tqdm scipy soundfile
 ```
 
 3. Download the dataset:
-The model expects encoded audio data. The default configuration uses the Kaggle dataset `boyazhangnb/encodedsongs`.
+   The model expects encoded audio data. The default configuration uses the Kaggle dataset `boyazhangnb/encodedsongs`.
 
 ## Usage
 
 ### Quick Start
 
 1. **Training**: Train the model from scratch
+
 ```bash
 cd src
 python train.py
 ```
 
 2. **Inference**: Generate music with a trained model
+
 ```bash
 cd src
 python inference.py
 ```
 
 3. **Sampling**: Run sampling utilities
+
 ```bash
 cd src
 python sample.py
@@ -134,6 +142,7 @@ python train.py
 ```
 
 Key training parameters can be modified in `config.py`:
+
 - `TRAINING_TIMESTEPS`: Number of diffusion steps (default: 800)
 - `TRAINING_LR`: Learning rate (default: 3.5e-4)
 - `TRAINING_EPOCHS`: Training epochs (default: 100)
@@ -149,6 +158,7 @@ python inference.py
 ```
 
 The inference script will:
+
 1. Load a trained model checkpoint
 2. Allow you to specify conditioning input
 3. Generate musical accompaniment using the diffusion sampling process
@@ -201,6 +211,7 @@ The model demonstrates stable training convergence and effective learning dynami
 ## 🧪 Experimental Results
 
 The model was evaluated on standard music generation benchmarks, demonstrating:
+
 - Superior efficiency compared to autoregressive models
 - Competitive musical coherence and quality
 - Real-time generation capabilities on consumer hardware
@@ -224,6 +235,7 @@ This allows the model to focus on fine-grained local patterns during early diffu
 ### V-Parameterization
 
 Instead of predicting noise ε, our model predicts velocity v:
+
 ```
 v_t = α_t * ε - σ_t * x_0
 ```
@@ -233,6 +245,7 @@ This parameterization provides more stable training dynamics and better converge
 ## Contributing
 
 We welcome contributions to improve SAMUeL-GEN! Please feel free to:
+
 - Report bugs and issues
 - Suggest new features
 - Submit pull requests
