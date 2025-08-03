@@ -1,0 +1,46 @@
+
+# Core dependencies for deep learning and scientific computing
+torch~=2.7.1       # The main deep learning framework
+numpy~=2.2.6       # Fundamental package for scientific computing with Python
+scipy              # Library for scientific and technical computing
+einops~=0.8.1      # Flexible and powerful tensor operations
+
+# Diffusion model and audio processing
+diffusers~=0.34.0  # State-of-the-art diffusion models
+accelerate         # A simple way to train and use PyTorch models with multi-GPU, TPU, and mixed precision
+torchsde           # Stochastic differential equation solver for PyTorch
+julius~=0.2.7      # Fast DSP for audio and 1D signals in PyTorch
+torchaudio~=2.7.1  # An audio library for PyTorch
+demucs~=4.0.1      # Music source separation
+lameenc~=1.8.1     # LAME encoder for MP3
+openunmix~=1.3.0   # Music source separation
+soundfile~=0.12.1  # Library to read and write sound files
+openai-whisper     # Speech recognition model
+
+# Transformer and NLP
+transformers~=4.39.0 # State-of-the-art machine learning for JAX, PyTorch and TensorFlow
+tokenizers==0.15.0   # Fast State-of-the-Art Tokenizers optimized for research and production
+
+# Utilities
+tqdm~=4.67.1       # A fast, extensible progress bar for Python and CLI
+PyYAML~=6.0.2      # YAML parser and emitter for Python
+omegaconf~=2.3.0   # A hierarchical configuration system
+submitit~=1.5.3    # A lightweight tool for submitting Python functions to a cluster
+retrying~=1.3.5    # A general-purpose retrying library
+setuptools~=78.1.1 # Build and distribute Python packages
+typing_extensions~=4.14.0 # Backported and Experimental Type Hints for Python
+mpmath~=1.3.0      # A Python library for arbitrary-precision floating-point arithmetic
+sympy~=1.14.0      # A Python library for symbolic mathematics
+antlr4-python3-runtime~=4.9.3 # ANTLR4 runtime for Python3
+filelock~=3.18.0   # A platform independent file lock
+fsspec~=2025.5.1   # Specification for Pythonic filesystems
+cloudpickle~=3.1.1 # Extended pickle for Python objects
+treetable~=0.2.5   # A library to print tables in the terminal
+MarkupSafe~=3.0.2  # Safely add untrusted strings to HTML/XML markup.
+
+# Data handling and visualization
+pandas~=2.2.2      # Data analysis and manipulation tool
+matplotlib~=3.8.4  # Plotting library
+kagglehub          # Kaggle API for datasets and competitions
+networkx           # For the creation, manipulation, and study of the structure, dynamics, and functions of complex networks.
+
