@@ -180,6 +180,16 @@ MODEL_UNET_SHAPES = [
 ]
 ```
 
+
+## Listen to a Sample Output
+
+You can listen to a sample of the model's generated accompaniment below:
+
+<audio controls>
+  <source src="results/inference_output.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
 ## Performance
 
 Our model achieves competitive results with significantly reduced computational requirements:
