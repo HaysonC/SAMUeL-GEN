@@ -4,8 +4,6 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.11](https://img.shields.io/badge/Python-3.11-blue.svg)](https://www.python.org/downloads/release/python-3110/)
 [![PyTorch 2.7](https://img.shields.io/badge/PyTorch-2.7-orange.svg)](https://pytorch.org/get-started/locally/)
-
-
 This repository contains the official implementation of **SAMUeL-GEN**, a lightweight latent diffusion model for vocal-conditioned musical accompaniment generation. Our approach achieves **220× parameter reduction** and **52× faster inference** compared to state-of-the-art systems while maintaining competitive performance.
 
 ## Paper
@@ -31,15 +29,15 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 Our model introduces several key innovations:
 
-1.  **Soft Alignment Attention Mechanism**: The core innovation is a soft alignment attention mechanism that dynamically balances local and global attention patterns through time-dependent weighting. This mechanism is based on the hierarchical diffusion process.
+1. **Soft Alignment Attention Mechanism**: The core innovation is a soft alignment attention mechanism that dynamically balances local and global attention patterns through time-dependent weighting. This mechanism is based on the hierarchical diffusion process.
 
-2.  **Dual-mode Attention**:
-    -   **Local attention** operates within sliding windows of size 16 to capture fine-grained temporal dependencies. The local attention for position *i* is computed as:
+2. **Dual-mode Attention**:
+    -  **Local attention** operates within sliding windows of size 16 to capture fine-grained temporal dependencies. The local attention for position *i* is computed as:
         $$
         \text{LocalAttn}(i) = \text{softmax}\left(\frac{Q_i K_{j \in W(i)}^T}{\sqrt{d}}\right)V
         $$
         where $W(i)$ is the local window around position $i$, and $Q, K, V$ are derived from convolutional projections.
-    -   **Global attention** computes relationships across the entire sequence using rotary position embeddings (RoPE) for improved positional encoding. The global attention formula is:
+    -  **Global attention** computes relationships across the entire sequence using rotary position embeddings (RoPE) for improved positional encoding. The global attention formula is:
         $$
         \text{GlobalAttn} = \text{softmax}\left(\frac{\text{ROPE}(Q)\text{ROPE}(K)^T}{\sqrt{d}}\right)V
         $$
@@ -91,7 +89,9 @@ cd SAMUeL-GEN
 
 2. Install dependencies:
 ```bash
-# Install from requirements file
+# Install from requirements file, or cd to source directory and run without src/ prefix
+python -m venv venv
+source venv/bin/activate  # On Windows use `venv\Scripts\activate`
 pip install -r src/requirements.txt
 
 # Or install core dependencies manually:
