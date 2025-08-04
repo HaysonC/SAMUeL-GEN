@@ -36,21 +36,18 @@ Our model introduces several key innovations:
 2. **Dual-mode Attention**:
 
    - **Local attention** operates within sliding windows of size 16 to capture fine-grained temporal dependencies. The local attention for position *i* is computed as:
-     $$
-     \text{LocalAttn}(i) = \text{softmax}\left(\frac{Q_i K_{j \in W(i)}^T}{\sqrt{d}}\right)V
-     $$
+  
+     $$\text{LocalAttn}(i) = \text{softmax}\left(\frac{Q_i K_{j \in W(i)}^T}{\sqrt{d}}\right)V$$
 
      where $W(i)$ is the local window around position $i$, and $Q, K, V$ are derived from convolutional projections.
    - **Global attention** computes relationships across the entire sequence using rotary position embeddings (RoPE) for improved positional encoding. The global attention formula is:
-     $$
-     \text{GlobalAttn} = \text{softmax}\left(\frac{\text{ROPE}(Q)\text{ROPE}(K)^T}{\sqrt{d}}\right)V
-     $$
+
+     $$\text{GlobalAttn} = \text{softmax}\left(\frac{\text{ROPE}(Q)\text{ROPE}(K)^T}{\sqrt{d}}\right)V$$
+     
 3. **FiLM Conditioning**: The architecture uses Feature-wise Linear Modulation (FiLM) layers to provide fine-grained temporal control and integrate timestep embeddings.
 4. **V-objective Training**: The model is trained to predict velocity, $v_t$, which is defined as:
 
-   $$
-   v_t = \alpha_t \epsilon - \sigma_t x_0
-   $$
+   $$v_t = \alpha_t \epsilon - \sigma_t x_0$$
 
 ## Repository Structure
 
